@@ -54,7 +54,7 @@ export default function Forecast() {
                 </p>
             </form>
             <hr/>
-                <footer>This project was coded by Viola D'Elia and is open-sourced on <a href='https://github.com/viola-delia/weather-react' target='_blank'>GitHub</a> and hosted on Netlify</footer>
+                <footer>This project was coded by Viola D'Elia and is open-sourced on <a href='https://github.com/viola-delia/weather-react' target='_blank noreferrer'>GitHub</a> and hosted on Netlify</footer>
 
         </div>
    
