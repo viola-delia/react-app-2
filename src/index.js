@@ -8,7 +8,7 @@ import Forecast from './Forecast';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Forecast />
+    <Forecast defaultCity= "New York"/>
   </React.StrictMode>
 );
 
