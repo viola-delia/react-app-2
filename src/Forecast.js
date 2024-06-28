@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import './Forecast.css';
 
 
 export default function Forecast() {
-    return (
+  
+const [weatherData, setWeatherData] = useState({ready: false});
+  function handleResponse(response) {
+    console.log(response.data);
+    setWeatherData({
+      ready: true,
+      temperature: response.data.main.temp,
+      humidity: response.data.main.humidity,
+    wind: response.data.wind.speed,
+    description: response.data.weather[0].description,
+    iconUrl: "https://icons.iconarchive.com/icons/icons-land/weather/256/Sunny-icon.png",
+  city: response.data.name,
+  date: "Friday 07:00",
+});
+    
+  }
+
+  if (weatherData.ready) {
+      return (
         <div className='content'>
             
             <form>
@@ -13,11 +32,11 @@ export default function Forecast() {
                 </div>
                 <br />
                 <div className='mainCity'>
-                <h1>San Francisco</h1>
-                <h2> <span className='mainCityTemperature'>☁️11</span>° C</h2>
+                <h1>{weatherData.city}</h1>
+                <h2> <span className='mainCityTemperature'><img src= {weatherData.iconUrl} alt={weatherData.description} className='image'/>{Math.round(weatherData.temperature)}</span>° C</h2>
                 </div>
-                <p>Friday 16:17, overcast clouds</p>
-                <p>Humidity: <span className='humidityPercentage'>90%</span>, Wind: <span className='wind'>7.15km/h</span></p>
+                <p>{weatherData.date}, {weatherData.description}</p>
+                <p>Humidity: <span className='humidityPercentage'>{weatherData.humidity}%</span>, Wind: <span className='wind'>{weatherData.wind} km/h</span></p>
                 <p>
                 <div class="weather-container">
   <div class="weather-day">
@@ -59,6 +78,15 @@ export default function Forecast() {
         </div>
    
    );
+  } else {
+ let apiKey = "ddfee6c6ea2669b2c756f5fc30a1fd5b";
+  let city = "New York";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+axios.get(apiUrl).then(handleResponse);
+
+return "Loading";
+  }
+  
   
 
    

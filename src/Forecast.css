@@ -45,6 +45,10 @@ h1 {
     font-size: 54px;
 }
 
+.image {
+    width: 60px;
+}
+
 .mainCityTemperature {
     font-size: 80px;
 }
@@ -102,6 +106,8 @@ h2 {
 p {
     text-align: center;
 }
+
+
 
 .formElements  {
 
