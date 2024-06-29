@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import './Forecast.css';
-import FormattedDate from "./FormattedDate"
+import WeatherInfo from './WeatherInfo';
 
 
 export default function Forecast(props) {
   
 const [weatherData, setWeatherData] = useState({ready: false});
+const [city, setCity] = useState(props.defaultCity);
   function handleResponse(response) {
     console.log(response.data);
     setWeatherData({
@@ -22,57 +23,40 @@ const [weatherData, setWeatherData] = useState({ready: false});
     
   }
 
+
+  function search() {
+     const apiKey = "ddfee6c6ea2669b2c756f5fc30a1fd5b";
+
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+setCity(event.target.value);
+
+  }
+
+
+
   if (weatherData.ready) {
       return (
         <div className='content'>
             
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className='formElements'>
                 <input type='text' className='searchBar' placeholder="Enter a City"></input>
-                <input type='submit' value='Search' className='searchButton'></input>
+                <input type='submit' value='Search' className='searchButton' onChange={handleCityChange}></input>
                 </div>
+              
                 <br />
-                <div className='mainCity'>
-                <h1>{weatherData.city}</h1>
-                <h2> <span className='mainCityTemperature'><img src= {weatherData.iconUrl} alt={weatherData.description} className='image'/>{Math.round(weatherData.temperature)}</span>° C</h2>
-                </div>
-                <p><FormattedDate date={weatherData.date}/> {weatherData.description}</p>
-                <p>Humidity: <span className='humidityPercentage'>{weatherData.humidity}%</span>, Wind: <span className='wind'>{weatherData.wind} km/h</span></p>
-                <p>
-                <div class="weather-container">
-  <div class="weather-day">
-    <div>Sat</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-  <div class="weather-day">
-    <div>Sun</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-  <div class="weather-day">
-    <div>Mon</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-  <div class="weather-day">
-    <div>Tue</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-  <div class="weather-day">
-    <div>Wed</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-  <div class="weather-day">
-    <div>Thu</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-</div>
-                </p>
+               
             </form>
+            <div><WeatherInfo data={weatherData}/></div>  
             <hr/>
                 <footer>This project was coded by Viola D'Elia and is open-sourced on <a href='https://github.com/viola-delia/weather-react' target='_blank noreferrer'>GitHub</a> and hosted on Netlify</footer>
 
@@ -80,15 +64,8 @@ const [weatherData, setWeatherData] = useState({ready: false});
    
    );
   } else {
- let apiKey = "ddfee6c6ea2669b2c756f5fc30a1fd5b";
-
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
-axios.get(apiUrl).then(handleResponse);
-
+search();
 return "Loading";
   }
   
-  
-
-   
 }
