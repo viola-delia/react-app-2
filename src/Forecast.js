@@ -49,8 +49,17 @@ setCity(event.target.value);
             
             <form onSubmit={handleSubmit}>
                 <div className='formElements'>
-                <input type='text' className='searchBar' placeholder="Enter a City"></input>
-                <input type='submit' value='Search' className='searchButton' onChange={handleCityChange}></input>
+                <input
+              type="text"
+              className="searchBar"
+              placeholder="Enter a City"
+              onChange={handleCityChange}
+            ></input>
+            <input
+              type="submit"
+              value="Search"
+              className="searchButton"
+            ></input>
                 </div>
               
                 <br />
