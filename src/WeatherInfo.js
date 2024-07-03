@@ -11,7 +11,7 @@ export default function WeatherInfo(props) {
                 
                 <h2> 
                   <div><span className='mainCityTemperature'><img src= {props.data.iconUrl} alt={props.data.description} className='image'/></span></div>
-                  <WeatherTemperature celsius={props.data.temperature}/>
+                  <WeatherTemperature celsius={props.data.temperature} />
               </h2>
 
 
