@@ -18,6 +18,7 @@ export default function WeatherInfo(props) {
 
                 </div>
                 <p><FormattedDate date={props.data.date}/> {props.data.description}</p>
+             
                 <p>Humidity: <span className='humidityPercentage'>{props.data.humidity}%</span>, Wind: <span className='wind'>{props.data.wind} km/h</span></p>
                 <p>
                 <div class="weather-container">
