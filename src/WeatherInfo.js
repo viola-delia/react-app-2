@@ -2,6 +2,7 @@ import React from "react";
 import FormattedDate from "./FormattedDate"
 import WeatherTemperature from "./WeatherTemperature";
 
+
 export default function WeatherInfo(props) {
     return  (
     <div className="WeatherInfo">
@@ -20,39 +21,7 @@ export default function WeatherInfo(props) {
                 <p><FormattedDate date={props.data.date}/> {props.data.description}</p>
              
                 <p>Humidity: <span className='humidityPercentage'>{props.data.humidity}%</span>, Wind: <span className='wind'>{props.data.wind} km/h</span></p>
-                <p>
-                <div class="weather-container">
-  <div class="weather-day">
-    <div>Sat</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-  <div class="weather-day">
-    <div>Sun</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-  <div class="weather-day">
-    <div>Mon</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-  <div class="weather-day">
-    <div>Tue</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-  <div class="weather-day">
-    <div>Wed</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-  <div class="weather-day">
-    <div>Thu</div>
-    <div class="weather-emoji">🌤️</div>
-    <div class="weather-temperature">16° 12°</div>
-  </div>
-</div>
-                </p></div>
+
+                </div>
     );
 }
